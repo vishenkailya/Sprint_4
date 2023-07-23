@@ -1,0 +1,34 @@
+### Python template
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*$py.class
+
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+
+# Django stuff:
+*.log
+
+__pypackages__/
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+/site
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+
