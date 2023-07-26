@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from faker import Faker
+from conftest import driver
 
 
 class BasePage:
@@ -24,7 +25,6 @@ class BasePage:
     def scroll_page(self, element):
         order = self.driver.find_element(*element)
         self.driver.execute_script("arguments[0].scrollIntoView();", order)
-
 
     def input_info(self, locator, text):
         self.driver.find_element(*locator).send_keys(text)

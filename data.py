@@ -2,7 +2,6 @@ import random
 import faker
 
 
-
 class OrderForm:
 
     def fill_form_name():
@@ -22,6 +21,3 @@ class OrderForm:
 
     def fill_form_phone():
         return random.randint(89000000000, 89999999999)
-
-
-

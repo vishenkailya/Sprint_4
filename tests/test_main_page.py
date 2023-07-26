@@ -6,30 +6,29 @@ from pages.main_page import MainPage
 from conftest import driver
 from locators.main_page_locators import MainPageLocators as L
 from locators.order_page_locators import OrderPageLocators as O
+from urls import Urls
 
 
 class TestMainPage:
 
     @allure.title('Переход на страницу Дзен через кнопку "Яндекс"')
     def test_go_to_dzen_dzen_page_open(self, driver):
-        page = BasePage(driver)
-        main_page = MainPage()
-        page.opening_page('https://qa-scooter.praktikum-services.ru/')
-        main_page.click_button_dzen_page(driver)
-        page.wait_for_tab_to_load('https://dzen.ru/?yredirect=true')
-        page.wait_for_tab_to_open(2)
-        assert driver.current_url == 'https://dzen.ru/?yredirect=true'
+        main_page = MainPage(driver)
+        main_page.opening_page(Urls.MAIN_PAGE)
+        main_page.click_button_dzen_page()
+        main_page.wait_for_tab_to_load(Urls.DZEN_MAIN_PAGE)
+        main_page.wait_for_tab_to_open(2)
+        assert driver.current_url == Urls.DZEN_MAIN_PAGE
 
     @allure.title('Переход на главную страницу через кнопку "Самокат"')
     def test_go_to_main_page_main_page_opened(self, driver):
-        page = BasePage(driver)
-        main_page = MainPage()
-        page.opening_page('https://qa-scooter.praktikum-services.ru/')
-        page.click_button(L.MAKE_ORDER_UP_BUTTON)
-        page.wait_for_element_to_load(O.NAME_INPUT)
-        main_page.click_scooter_button_main_page(driver)
-        page.wait_for_element_to_load(L.MAKE_ORDER_UP_BUTTON)
-        assert driver.current_url == 'https://qa-scooter.praktikum-services.ru/'
+        main_page = MainPage(driver)
+        main_page.opening_page(Urls.MAIN_PAGE)
+        main_page.click_button(L.MAKE_ORDER_UP_BUTTON)
+        main_page.wait_for_element_to_load(O.NAME_INPUT)
+        main_page.click_scooter_button_main_page()
+        main_page.wait_for_element_to_load(L.MAKE_ORDER_UP_BUTTON)
+        assert driver.current_url == Urls.MAIN_PAGE
 
 
 class TestQuestions:
@@ -48,12 +47,11 @@ class TestQuestions:
                              ]
                              )
     def test_get_faq_answers(self, driver, index, answers):
-        page = BasePage(driver)
-        main_page = MainPage()
-        page.opening_page('https://qa-scooter.praktikum-services.ru/')
-        main_page.scroll_to_faq(driver)
-        main_page.click_on_question(driver, index)
-        answer = main_page.get_answer_text(driver)
+        main_page = MainPage(driver)
+        main_page.opening_page(Urls.MAIN_PAGE)
+        main_page.scroll_to_faq()
+        main_page.click_on_question(index)
+        answer = main_page.get_answer_text()
         assert answer == answers
 
 

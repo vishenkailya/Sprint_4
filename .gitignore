@@ -1,8 +1,6 @@
-### Python template
-# Byte-compiled / optimized / DLL files
 __pycache__/
 *$py.class
-
+.idea
 
 # Installer logs
 pip-log.txt
